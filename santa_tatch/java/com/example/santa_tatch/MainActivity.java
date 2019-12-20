@@ -15,17 +15,23 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout.LayoutParams buttonLayoutParams;
-    private  ImageButton imageButton;
+    private TextView textView;
+    private ImageButton imageButton;
+    private int font;
     private int scale;
     private int marginR;
     private int marginU;
     private int marginL;
     private int marginD;
+    private String score;
+    private int Iscore;
+  //  private int score;
 
     Random r = new Random();
 
@@ -49,7 +55,30 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(layout);
 
+
+
+        //サイズ設定
+        font = TypedValue.COMPLEX_UNIT_SP;
         scale = TypedValue.COMPLEX_UNIT_DIP;
+
+
+
+        // TextView インスタンス生成
+            textView = new TextView(this);
+            Iscore = 0;
+            score = "SCORE:" + Iscore;
+            //score = "000"
+            textView.setText(score);
+            textView.setTextSize(font,50);
+            layout.addView(textView,
+                    new LinearLayout.LayoutParams(
+                            mParent,
+                            wContent
+                    )
+            );
+
+
+
         // ボタンの設定
         imageButton = new ImageButton(this);
 
@@ -90,9 +119,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     default:break;
                 }
-
+                Iscore += 100;
+                score = "SCORE:" + Iscore;
+                textView.setText(score);
                 buttonLayoutParams.setMargins(marginL, marginU, marginR, marginD);
                 imageButton.setLayoutParams(buttonLayoutParams);
+
             }
         });
     }
