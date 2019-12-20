@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(layout);
 
-        scale =  TypedValue.COMPLEX_UNIT_DIP;
+        scale = TypedValue.COMPLEX_UNIT_DIP;
         // ボタンの設定
         imageButton = new ImageButton(this);
 
@@ -76,18 +76,55 @@ public class MainActivity extends AppCompatActivity {
         layout.addView(imageButton);
 
         // リスナーをボタンに登録
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        imageButton. setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                marginL=(int) (r.nextInt(300))*scale;
-                marginU=(int) (r.nextInt(800))*scale;
-                marginR=(int) (r.nextInt(300))*scale;
-                marginD=(int) (r.nextInt(800))*scale;
+                switch ((int)(r.nextInt(4))) {
+                    case 0: mode1();
+                            break;
+                    case 1: mode2();
+                        break;
+                    case 2: mode3();
+                        break;
+                    case 3: mode4();
+                        break;
+                    default:break;
+                }
+
                 buttonLayoutParams.setMargins(marginL, marginU, marginR, marginD);
                 imageButton.setLayoutParams(buttonLayoutParams);
             }
         });
     }
+    //上右
+    private void mode1() {
+        marginL = (int) (r.nextInt(300) + 300) * scale;
+        marginU = 10 * scale;
+        marginR = 10 * scale;
+        marginD = (int) (r.nextInt(800) + 400) * scale;
+    }
+    //上左
+    private void mode2() {
+        marginL = 10 * scale;
+        marginU = 10 * scale;
+        marginR = (int) (r.nextInt(300) + 300) * scale;
+        marginD = (int) (r.nextInt(800) + 400) * scale;
+    }
+    //下右
+    private void mode3() {
+        marginL = (int) (r.nextInt(300) + 300) * scale;
+        marginU = (int) (r.nextInt(800) + 400) * scale;
+        marginR = 10 * scale;
+        marginD = 10 * scale;
+    }
+    //下左
+    private void mode4() {
+        marginL = 10 * scale;
+        marginU = (int) (r.nextInt(800) + 400) * scale;
+        marginR = (int) (r.nextInt(300) + 300) * scale;
+        marginD = 10 * scale;
+    }
+
 }
 
 
